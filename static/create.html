@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Dataset - Pinpoint Earth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="custom-cursor"></div>
+
+<div class="container">
+    <a href="/" class="back-link">← Back to Game</a>
+    <h1>Create New Challenge</h1>
+    
+    <!-- Step 1: Basic Info -->
+    <div class="form-group">
+        <label>Dataset Name</label>
+        <input type="text" id="ds-name" placeholder="e.g. Castles in Spain">
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <input type="text" id="ds-desc" placeholder="Short description of the challenge">
+    </div>
+    <div class="form-group">
+        <label>Type</label>
+        <select id="ds-type">
+            <option value="point">Point (Cities, Buildings, etc.)</option>
+            <option value="polygon">Polygon (Countries, Regions, etc.)</option>
+        </select>
+    </div>
+
+    <!-- Step 2: Query Builder -->
+    <h2>Query Builder</h2>
+    
+    <div class="form-group">
+        <label>Item Type (What are we looking for?)</label>
+        <div class="item-type-search-container">
+            <input type="text" id="item-type-search" placeholder="Search type (e.g. 'City', 'Castle')..." oninput="debounceSearch(this, 'item', 'item-type-results')">
+            <input type="hidden" id="item-type-id">
+            <div id="item-type-results" class="search-results"></div>
+        </div>
+        <div id="selected-type" class="selected-type-display"></div>
+    </div>
+
+    <div class="form-group">
+        <label>Constraints (e.g. Located in Germany)</label>
+        <div id="constraints-list"></div>
+        <button type="button" class="secondary" onclick="addConstraintRow()">+ Add Constraint</button>
+    </div>
+
+    <!-- Step 3: Filters -->
+    <h2>Filters</h2>
+    <div class="row">
+        <div class="col">
+            <label>Min Population</label>
+            <input type="number" id="min-pop" value="0">
+        </div>
+        <div class="col">
+            <label>Limit (Max Items)</label>
+            <input type="number" id="limit" value="100">
+        </div>
+    </div>
+    <div class="form-group exclude-dissolved-container">
+        <label>
+            <input type="checkbox" id="exclude-dissolved" checked> Exclude Dissolved/Historical Items
+        </label>
+    </div>
+
+    <button type="button" onclick="previewDataset()" class="preview-btn">Preview Results</button>
+
+    <!-- Preview Area -->
+    <div id="preview-area">
+        <h3>Preview (<span id="preview-count">0</span> items)</h3>
+        <div id="preview-list"></div>
+        
+        <div class="save-config-section">
+            <h3>Save Configuration</h3>
+            <div class="form-group">
+                <label>Prompt Template ({label} is the item name)</label>
+                <input type="text" id="prompt-tmpl" value="Where is {label}?">
+            </div>
+            <div class="form-group">
+                <label>Sub-Prompt Template (Optional)</label>
+                <input type="text" id="sub-prompt-tmpl" placeholder="e.g. Find this location">
+            </div>
+            <button onclick="saveDataset()" class="save-dataset-btn">Save Dataset</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // --- Custom Cursor ---
+    const cursor = document.getElementById('custom-cursor');
+    
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+
+    document.addEventListener('mousedown', () => cursor.classList.add('active'));
+    document.addEventListener('mouseup', () => cursor.classList.remove('active'));
+
+    const addHoverState = () => cursor.classList.add('hover');
+    const removeHoverState = () => cursor.classList.remove('hover');
+
+    document.querySelectorAll('a, button, .search-item, input, select').forEach(el => {
+        el.addEventListener('mouseenter', addHoverState);
+        el.addEventListener('mouseleave', removeHoverState);
+    });
+
+    // Observer for dynamic elements
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            mutation.addedNodes.forEach((node) => {
+                if (node.nodeType === 1) {
+                    if (node.matches('a, button, .search-item, input, select')) {
+                        node.addEventListener('mouseenter', addHoverState);
+                        node.addEventListener('mouseleave', removeHoverState);
+                    }
+                    node.querySelectorAll('a, button, .search-item, input, select').forEach(el => {
+                        el.addEventListener('mouseenter', addHoverState);
+                        el.addEventListener('mouseleave', removeHoverState);
+                    });
+                }
+            });
+        });
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    let searchTimeout;
+    let currentDatasetId = null;
+    let currentFilename = null;
+
+    window.onload = async () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        if (id) {
+            currentDatasetId = id;
+            document.querySelector('h1').innerText = "Edit Challenge";
+            document.title = "Edit Dataset - Pinpoint Earth";
+            await loadDataset(id);
+        }
+    };
+
+    async function fetchLabel(id) {
+        try {
+             const res = await fetch(`https://www.wikidata.org/w/api.php?action=wbgetentities&ids=${id}&props=labels&languages=en&format=json&origin=*`);
+             const data = await res.json();
+             return data.entities[id].labels.en.value;
+        } catch {
+            return id;
+        }
+    }
+
+    async function loadDataset(id) {
+        try {
+            const res = await fetch('/datasets');
+            const datasets = await res.json();
+            const ds = datasets.find(d => d.id === id);
+            if (!ds) {
+                alert("Dataset not found");
+                return;
+            }
+            
+            currentFilename = ds.filename;
+
+            // Populate Basic Info
+            document.getElementById('ds-name').value = ds.name;
+            document.getElementById('ds-desc').value = ds.description;
+            document.getElementById('ds-type').value = ds.type;
+            document.getElementById('prompt-tmpl').value = ds.prompt_template;
+            document.getElementById('sub-prompt-tmpl').value = ds.sub_prompt_template || "";
+
+            // Populate Config if available
+            if (ds.config) {
+                const typeId = ds.config.item_type;
+                document.getElementById('item-type-id').value = typeId;
+                fetchLabel(typeId).then(label => {
+                     document.getElementById('selected-type').innerText = `Selected: ${label} (${typeId})`;
+                });
+
+                const constraintsList = document.getElementById('constraints-list');
+                constraintsList.innerHTML = '';
+                if (ds.config.constraints) {
+                    for (const c of ds.config.constraints) {
+                        addConstraintRow(c.property, c.value);
+                    }
+                }
+
+                document.getElementById('min-pop').value = ds.config.min_pop;
+                document.getElementById('limit').value = ds.config.limit;
+                document.getElementById('exclude-dissolved').checked = ds.config.exclude_dissolved;
+            }
+
+            // Add Actions
+            const container = document.querySelector('.container');
+            
+            // Delete Button
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'danger delete-dataset-btn';
+            deleteBtn.innerText = "Delete Dataset";
+            deleteBtn.onclick = deleteDataset;
+            container.appendChild(deleteBtn);
+            
+            // View Saved Data Button (insert after Preview)
+            const previewBtn = document.querySelector('button[onclick="previewDataset()"]');
+            const viewSavedBtn = document.createElement('button');
+            viewSavedBtn.className = 'secondary view-saved-btn';
+            viewSavedBtn.innerText = "View Saved Data";
+            viewSavedBtn.onclick = viewSavedData;
+            previewBtn.parentNode.insertBefore(viewSavedBtn, previewBtn.nextSibling);
+
+        } catch (e) {
+            console.error(e);
+            alert("Error loading dataset");
+        }
+    }
+
+    async function viewSavedData() {
+        if (!currentFilename) return;
+        try {
+            const res = await fetch('/' + currentFilename);
+            const data = await res.json();
+            displayPreview(data);
+            document.getElementById('preview-count').innerText = `${data.length} (Saved)`;
+        } catch(e) {
+            alert("Could not load saved data");
+        }
+    }
+
+    async function deleteDataset() {
+        if (!confirm("Are you sure you want to delete this dataset? This cannot be undone.")) return;
+        
+        try {
+            const res = await fetch('/api/delete', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({id: currentDatasetId})
+            });
+            if (res.ok) {
+                window.location.href = '/';
+            } else {
+                alert("Error deleting dataset");
+            }
+        } catch (e) {
+            alert("Error: " + e);
+        }
+    }
+
+    function debounceSearch(input, type, resultsId) {
+        clearTimeout(searchTimeout);
+        const query = input.value;
+        if (query.length < 2) {
+            document.getElementById(resultsId).style.display = 'none';
+            return;
+        }
+        
+        searchTimeout = setTimeout(async () => {
+            const res = await fetch(`/api/search?q=${encodeURIComponent(query)}&type=${type}`);
+            const data = await res.json();
+            showResults(data, resultsId, input);
+        }, 500);
+    }
+
+    function showResults(results, containerId, inputElem) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = '';
+        container.style.display = 'block';
+        
+        if (results.length === 0) {
+            container.innerHTML = '<div class="search-item">No results found</div>';
+            return;
+        }
+
+        results.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'search-item';
+            div.innerHTML = `<strong>${item.label} (${item.id})</strong><span>${item.description || ''}</span>`;
+            div.onclick = () => {
+                selectItem(item, inputElem, container);
+            };
+            container.appendChild(div);
+        });
+    }
+
+    function selectItem(item, inputElem, container) {
+        inputElem.value = item.label;
+        container.style.display = 'none';
+        
+        // If it's the main type selector
+        if (inputElem.id === 'item-type-search') {
+            document.getElementById('item-type-id').value = item.id;
+            document.getElementById('selected-type').innerText = `Selected: ${item.label} (${item.id})`;
+        } 
+        // If it's a constraint value selector
+        else if (inputElem.dataset.targetId) {
+            document.getElementById(inputElem.dataset.targetId).value = item.id;
+        }
+    }
+
+    function addConstraintRow(propVal = '', itemVal = '') {
+        const id = Date.now() + Math.floor(Math.random() * 1000);
+        const div = document.createElement('div');
+        div.className = 'constraint-row';
+        div.innerHTML = `
+            <div class="col">
+                <input type="text" placeholder="Property ID (e.g. P17)" class="prop-input" value="${propVal}">
+            </div>
+            <div class="col" style="position: relative;">
+                <input type="text" placeholder="Search Value..." oninput="debounceSearch(this, 'item', 'res-${id}')" data-target-id="val-${id}" value="${itemVal ? 'Loading...' : ''}">
+                <input type="hidden" class="val-input" id="val-${id}" value="${itemVal}">
+                <div id="res-${id}" class="search-results"></div>
+            </div>
+            <button class="danger remove-btn" onclick="this.parentElement.remove()">X</button>
+        `;
+        document.getElementById('constraints-list').appendChild(div);
+        
+        if (itemVal) {
+             fetchLabel(itemVal).then(label => {
+                 const input = div.querySelector(`input[data-target-id="val-${id}"]`);
+                 if(input) input.value = label;
+             });
+        }
+    }
+
+    async function previewDataset() {
+        const config = getConfig();
+        if (!config) return;
+
+        const btn = document.querySelector('button[onclick="previewDataset()"]');
+        const originalText = btn.innerText;
+        btn.innerText = "Loading...";
+        btn.classList.add('loading');
+
+        try {
+            const res = await fetch('/api/preview', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(config)
+            });
+            
+            if (!res.ok) throw new Error("Failed to fetch");
+            
+            const data = await res.json();
+            displayPreview(data);
+        } catch (e) {
+            alert("Error fetching preview: " + e);
+        } finally {
+            btn.innerText = originalText;
+            btn.classList.remove('loading');
+        }
+    }
+
+    function getConfig() {
+        const typeId = document.getElementById('item-type-id').value;
+        if (!typeId) {
+            alert("Please select an Item Type first.");
+            return null;
+        }
+
+        const constraints = [];
+        document.querySelectorAll('.constraint-row').forEach(row => {
+            const prop = row.querySelector('.prop-input').value.trim();
+            const val = row.querySelector('.val-input').value;
+            if (prop && val) {
+                constraints.push({ property: prop, value: val });
+            }
+        });
+
+        return {
+            item_type: typeId,
+            constraints: constraints,
+            dataset_type: document.getElementById('ds-type').value,
+            min_pop: parseInt(document.getElementById('min-pop').value) || 0,
+            exclude_dissolved: document.getElementById('exclude-dissolved').checked,
+            limit: parseInt(document.getElementById('limit').value) || 100
+        };
+    }
+
+    function displayPreview(data) {
+        const area = document.getElementById('preview-area');
+        const list = document.getElementById('preview-list');
+        const count = document.getElementById('preview-count');
+        
+        area.style.display = 'block';
+        count.innerText = data.length;
+        list.innerHTML = '';
+
+        if (data.length === 0) {
+            list.innerHTML = '<div class="preview-item">No items found. Try relaxing constraints.</div>';
+            return;
+        }
+
+        data.slice(0, 50).forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'preview-item';
+            div.innerText = `${item.label} (${item.id})`;
+            list.appendChild(div);
+        });
+        
+        if (data.length > 50) {
+            const more = document.createElement('div');
+            more.className = 'preview-item';
+            more.style.fontStyle = 'italic';
+            more.innerText = `...and ${data.length - 50} more`;
+            list.appendChild(more);
+        }
+    }
+
+    async function saveDataset() {
+        const config = getConfig();
+        if (!config) return;
+
+        const name = document.getElementById('ds-name').value.trim();
+        if (!name) {
+            alert("Please enter a dataset name.");
+            return;
+        }
+
+        const payload = {
+            id: currentDatasetId,
+            config: config,
+            name: name,
+            description: document.getElementById('ds-desc').value.trim(),
+            prompt_template: document.getElementById('prompt-tmpl').value.trim(),
+            sub_prompt_template: document.getElementById('sub-prompt-tmpl').value.trim()
+        };
+
+        try {
+            const res = await fetch('/api/save', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(payload)
+            });
+            
+            if (res.ok) {
+                alert("Dataset saved successfully!");
+                window.location.href = '/';
+            } else {
+                alert("Error saving dataset");
+            }
+        } catch (e) {
+            alert("Error: " + e);
+        }
+    }
+</script>
+
+</body>
+</html>

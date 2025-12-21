@@ -1,0 +1,117 @@
+[
+  {
+    "id": "custom_1766093674",
+    "name": "cities in germany, pop>100k",
+    "description": "",
+    "type": "point",
+    "filename": "dataset_1766093674.json",
+    "prompt_template": "Where is {label}?",
+    "sub_prompt_template": "",
+    "data_keys": {
+      "label": "label",
+      "lat": "lat",
+      "lng": "lng"
+    }
+  },
+  {
+    "id": "custom_1766093761",
+    "name": "countries",
+    "description": "",
+    "type": "polygon",
+    "filename": "dataset_1766093761.json",
+    "prompt_template": "Where is {label}?",
+    "sub_prompt_template": "",
+    "data_keys": {
+      "label": "label",
+      "geoShapeUrl": "geoShapeUrl"
+    }
+  },
+  {
+    "id": "custom_1766155659",
+    "name": "cities in europe, pop>1M",
+    "description": "",
+    "type": "point",
+    "filename": "dataset_1766155659.json",
+    "prompt_template": "Where is {label}?",
+    "sub_prompt_template": "",
+    "data_keys": {
+      "label": "label",
+      "lat": "lat",
+      "lng": "lng"
+    }
+  },
+  {
+    "id": "custom_1766333992",
+    "name": "US states",
+    "description": "",
+    "type": "polygon",
+    "filename": "dataset_1766333992.json",
+    "prompt_template": "Where is {label}?",
+    "sub_prompt_template": "",
+    "config": {
+      "item_type": "Q35657",
+      "constraints": [],
+      "dataset_type": "polygon",
+      "min_pop": 0,
+      "exclude_dissolved": true,
+      "limit": 100
+    },
+    "data_keys": {
+      "label": "label",
+      "geoShapeUrl": "geoShapeUrl"
+    }
+  },
+  {
+    "id": "custom_1766334378",
+    "name": "cities, pop>5M",
+    "description": "",
+    "type": "point",
+    "filename": "dataset_1766334378.json",
+    "prompt_template": "Where is {label}?",
+    "sub_prompt_template": "",
+    "config": {
+      "item_type": "Q515",
+      "constraints": [
+        {
+          "property": "-P17",
+          "value": "Q668"
+        },
+        {
+          "property": "-P17",
+          "value": "Q148"
+        }
+      ],
+      "dataset_type": "point",
+      "min_pop": 5000000,
+      "exclude_dissolved": true,
+      "limit": 100
+    },
+    "data_keys": {
+      "label": "label",
+      "lat": "lat",
+      "lng": "lng"
+    }
+  },
+  {
+    "id": "custom_1766334824",
+    "name": "military restricted zones",
+    "description": "",
+    "type": "point",
+    "filename": "dataset_1766334824.json",
+    "prompt_template": "Where is {label}?",
+    "sub_prompt_template": "",
+    "config": {
+      "item_type": "Q11836899",
+      "constraints": [],
+      "dataset_type": "point",
+      "min_pop": 0,
+      "exclude_dissolved": false,
+      "limit": 100
+    },
+    "data_keys": {
+      "label": "label",
+      "lat": "lat",
+      "lng": "lng"
+    }
+  }
+]

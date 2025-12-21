@@ -1,0 +1,997 @@
+[
+  {
+    "label": "United States",
+    "id": "Q30",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:United+States.map"
+  },
+  {
+    "label": "Turkey",
+    "id": "Q43",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Turkey.map"
+  },
+  {
+    "label": "Russia",
+    "id": "Q159",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Russia.map"
+  },
+  {
+    "label": "Japan",
+    "id": "Q17",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Japan.map"
+  },
+  {
+    "label": "Italy",
+    "id": "Q38",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Italia.map"
+  },
+  {
+    "label": "France",
+    "id": "Q142",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:France.map"
+  },
+  {
+    "label": "Finland",
+    "id": "Q33",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Finland.map"
+  },
+  {
+    "label": "Germany",
+    "id": "Q183",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Germany.map"
+  },
+  {
+    "label": "India",
+    "id": "Q668",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:India+outline.map"
+  },
+  {
+    "label": "Mexico",
+    "id": "Q96",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Mexico.map"
+  },
+  {
+    "label": "People's Republic of China",
+    "id": "Q148",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:China.map"
+  },
+  {
+    "label": "Australia",
+    "id": "Q408",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Australia.map"
+  },
+  {
+    "label": "Norway",
+    "id": "Q20",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Norway.map"
+  },
+  {
+    "label": "Canada",
+    "id": "Q16",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Canada.map"
+  },
+  {
+    "label": "Spain",
+    "id": "Q29",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Spain.map"
+  },
+  {
+    "label": "United Kingdom",
+    "id": "Q145",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:United+Kingdom.map"
+  },
+  {
+    "label": "Poland",
+    "id": "Q36",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Poland.map"
+  },
+  {
+    "label": "Albania",
+    "id": "Q222",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Albania.map"
+  },
+  {
+    "label": "Ukraine",
+    "id": "Q212",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Ukraine.map"
+  },
+  {
+    "label": "Egypt",
+    "id": "Q79",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Egypt.map"
+  },
+  {
+    "label": "Brazil",
+    "id": "Q155",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Brazil.map"
+  },
+  {
+    "label": "Switzerland",
+    "id": "Q39",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Switzerland.map"
+  },
+  {
+    "label": "Chile",
+    "id": "Q298",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Chile.map"
+  },
+  {
+    "label": "Greece",
+    "id": "Q41",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Greece.map"
+  },
+  {
+    "label": "Israel",
+    "id": "Q801",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Israel.map"
+  },
+  {
+    "label": "Belgium",
+    "id": "Q31",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Belgium.map"
+  },
+  {
+    "label": "Iran",
+    "id": "Q794",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Iran.map"
+  },
+  {
+    "label": "Argentina",
+    "id": "Q414",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Argentina.map"
+  },
+  {
+    "label": "Sweden",
+    "id": "Q34",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Sweden.map"
+  },
+  {
+    "label": "Denmark",
+    "id": "Q35",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Denmark.map"
+  },
+  {
+    "label": "Austria",
+    "id": "Q40",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Austria.map"
+  },
+  {
+    "label": "Portugal",
+    "id": "Q45",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Portugal.map"
+  },
+  {
+    "label": "Vietnam",
+    "id": "Q881",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Vietnam.map"
+  },
+  {
+    "label": "South Africa",
+    "id": "Q258",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:South+Africa.map"
+  },
+  {
+    "label": "Algeria",
+    "id": "Q262",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Algeria.map"
+  },
+  {
+    "label": "Colombia",
+    "id": "Q739",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Colombia.map"
+  },
+  {
+    "label": "Bulgaria",
+    "id": "Q219",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Bulgaria.map"
+  },
+  {
+    "label": "Indonesia",
+    "id": "Q252",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Indonesia.map"
+  },
+  {
+    "label": "Afghanistan",
+    "id": "Q889",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Afghanistan.map"
+  },
+  {
+    "label": "Azerbaijan",
+    "id": "Q227",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Azerbaijan.map"
+  },
+  {
+    "label": "Belarus",
+    "id": "Q184",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Belarus.map"
+  },
+  {
+    "label": "Hungary",
+    "id": "Q28",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Hungary.map"
+  },
+  {
+    "label": "Pakistan",
+    "id": "Q843",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Pakistan.map"
+  },
+  {
+    "label": "Iceland",
+    "id": "Q189",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Iceland.map"
+  },
+  {
+    "label": "Estonia",
+    "id": "Q191",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Estonia.map"
+  },
+  {
+    "label": "Czech Republic",
+    "id": "Q213",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Czechia.map"
+  },
+  {
+    "label": "Croatia",
+    "id": "Q224",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Croatia.map"
+  },
+  {
+    "label": "Lithuania",
+    "id": "Q37",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Lithuania.map"
+  },
+  {
+    "label": "Thailand",
+    "id": "Q869",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Thailand.map"
+  },
+  {
+    "label": "South Korea",
+    "id": "Q884",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:South+Korea.map"
+  },
+  {
+    "label": "Serbia",
+    "id": "Q403",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Serbia.map"
+  },
+  {
+    "label": "Armenia",
+    "id": "Q399",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Armenia.map"
+  },
+  {
+    "label": "Iraq",
+    "id": "Q796",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Iraq.map"
+  },
+  {
+    "label": "Romania",
+    "id": "Q218",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Romania.map"
+  },
+  {
+    "label": "Kazakhstan",
+    "id": "Q232",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Kazakhstan.map"
+  },
+  {
+    "label": "Georgia",
+    "id": "Q230",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Georgia.map"
+  },
+  {
+    "label": "New Zealand",
+    "id": "Q664",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:New+Zealand.map"
+  },
+  {
+    "label": "Saudi Arabia",
+    "id": "Q851",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Saudi+Arabia.map"
+  },
+  {
+    "label": "Nigeria",
+    "id": "Q1033",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Nigeria.map"
+  },
+  {
+    "label": "Venezuela",
+    "id": "Q717",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Venezuela.map"
+  },
+  {
+    "label": "Bangladesh",
+    "id": "Q902",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Bangladesh.map"
+  },
+  {
+    "label": "Ireland",
+    "id": "Q27",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Ireland.map"
+  },
+  {
+    "label": "Malaysia",
+    "id": "Q833",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Malaysia.map"
+  },
+  {
+    "label": "Ethiopia",
+    "id": "Q115",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Ethiopia.map"
+  },
+  {
+    "label": "Slovakia",
+    "id": "Q214",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Slovakia.map"
+  },
+  {
+    "label": "Bosnia and Herzegovina",
+    "id": "Q225",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Bosnia.map"
+  },
+  {
+    "label": "Vatican City",
+    "id": "Q237",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Vatican.map"
+  },
+  {
+    "label": "Syria",
+    "id": "Q858",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Syria.map"
+  },
+  {
+    "label": "Latvia",
+    "id": "Q211",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Latvia.map"
+  },
+  {
+    "label": "Luxembourg",
+    "id": "Q32",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:LuxembourgCountry.map"
+  },
+  {
+    "label": "Kenya",
+    "id": "Q114",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Kenya.map"
+  },
+  {
+    "label": "Slovenia",
+    "id": "Q215",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Slovenia.map"
+  },
+  {
+    "label": "Singapore",
+    "id": "Q334",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Singapore.map"
+  },
+  {
+    "label": "Peru",
+    "id": "Q419",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Peru.map"
+  },
+  {
+    "label": "Philippines",
+    "id": "Q928",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Philippines.map"
+  },
+  {
+    "label": "Libya",
+    "id": "Q1016",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Libya.map"
+  },
+  {
+    "label": "Cambodia",
+    "id": "Q424",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Cambodia.map"
+  },
+  {
+    "label": "Moldova",
+    "id": "Q217",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Moldova.map"
+  },
+  {
+    "label": "Democratic Republic of the Congo",
+    "id": "Q974",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:DR+Congo.map"
+  },
+  {
+    "label": "Morocco",
+    "id": "Q1028",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Morocco.map"
+  },
+  {
+    "label": "Sudan",
+    "id": "Q1049",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Sudan.map"
+  },
+  {
+    "label": "Lebanon",
+    "id": "Q822",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Lebanon.map"
+  },
+  {
+    "label": "Andorra",
+    "id": "Q228",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Andorra.map"
+  },
+  {
+    "label": "Malta",
+    "id": "Q233",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Malta.map"
+  },
+  {
+    "label": "Cyprus",
+    "id": "Q229",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Cyprus.map"
+  },
+  {
+    "label": "Tunisia",
+    "id": "Q948",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Tunisia.map"
+  },
+  {
+    "label": "Nepal",
+    "id": "Q837",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Nepal.map"
+  },
+  {
+    "label": "North Macedonia",
+    "id": "Q221",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Macedonia.map"
+  },
+  {
+    "label": "Montenegro",
+    "id": "Q236",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Montenegro.map"
+  },
+  {
+    "label": "Mongolia",
+    "id": "Q711",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:MN.map"
+  },
+  {
+    "label": "Uruguay",
+    "id": "Q77",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Uruguay.map"
+  },
+  {
+    "label": "Ghana",
+    "id": "Q117",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Ghana.map"
+  },
+  {
+    "label": "Somalia",
+    "id": "Q1045",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Somalia.map"
+  },
+  {
+    "label": "Angola",
+    "id": "Q916",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Angola.map"
+  },
+  {
+    "label": "Zimbabwe",
+    "id": "Q954",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Zimbabwe.map"
+  },
+  {
+    "label": "Kyrgyzstan",
+    "id": "Q813",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Kyrgyzstan.map"
+  },
+  {
+    "label": "Monaco",
+    "id": "Q235",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Monaco/Monaco.map"
+  },
+  {
+    "label": "United Arab Emirates",
+    "id": "Q878",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:United+Arab+Emirates.map"
+  },
+  {
+    "label": "Madagascar",
+    "id": "Q1019",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Madagascar.map"
+  },
+  {
+    "label": "Laos",
+    "id": "Q819",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Laos.map"
+  },
+  {
+    "label": "Myanmar",
+    "id": "Q836",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Myanmar.map"
+  },
+  {
+    "label": "Namibia",
+    "id": "Q1030",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Namibia.map"
+  },
+  {
+    "label": "Ecuador",
+    "id": "Q736",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Ecuador.map"
+  },
+  {
+    "label": "Tanzania",
+    "id": "Q924",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Tanzania.map"
+  },
+  {
+    "label": "Jordan",
+    "id": "Q810",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Jordan.map"
+  },
+  {
+    "label": "Taiwan",
+    "id": "Q865",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Taiwan.map"
+  },
+  {
+    "label": "Liechtenstein",
+    "id": "Q347",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Liechtenstein.map"
+  },
+  {
+    "label": "Yemen",
+    "id": "Q805",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Yemen.map"
+  },
+  {
+    "label": "San Marino",
+    "id": "Q238",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:San+Marino.map"
+  },
+  {
+    "label": "Bolivia",
+    "id": "Q750",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Bolivia.map"
+  },
+  {
+    "label": "Chad",
+    "id": "Q657",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Chad.map"
+  },
+  {
+    "label": "Botswana",
+    "id": "Q963",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Botswana.map"
+  },
+  {
+    "label": "Cameroon",
+    "id": "Q1009",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Cameroon.map"
+  },
+  {
+    "label": "Uganda",
+    "id": "Q1036",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Uganda.map"
+  },
+  {
+    "label": "Uzbekistan",
+    "id": "Q265",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Uzbekistan.map"
+  },
+  {
+    "label": "North Korea",
+    "id": "Q423",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:North+Korea.map"
+  },
+  {
+    "label": "Mali",
+    "id": "Q912",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Mali.map"
+  },
+  {
+    "label": "Paraguay",
+    "id": "Q733",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Paraguay.map"
+  },
+  {
+    "label": "Tajikistan",
+    "id": "Q863",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Tajikistan.map"
+  },
+  {
+    "label": "Ivory Coast",
+    "id": "Q1008",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Ivory+Coast.map"
+  },
+  {
+    "label": "Sri Lanka",
+    "id": "Q854",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Sri+Lanka.map"
+  },
+  {
+    "label": "Cuba",
+    "id": "Q241",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Cuba.map"
+  },
+  {
+    "label": "Benin",
+    "id": "Q962",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Benin.map"
+  },
+  {
+    "label": "Burkina Faso",
+    "id": "Q965",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Burkina+Faso.map"
+  },
+  {
+    "label": "Kuwait",
+    "id": "Q817",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Kuwait.map"
+  },
+  {
+    "label": "Zambia",
+    "id": "Q953",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Zambia.map"
+  },
+  {
+    "label": "Bhutan",
+    "id": "Q917",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Bhutan.map"
+  },
+  {
+    "label": "Eritrea",
+    "id": "Q986",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Eritrea.map"
+  },
+  {
+    "label": "Bahrain",
+    "id": "Q398",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Bahrain.map"
+  },
+  {
+    "label": "Senegal",
+    "id": "Q1041",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Senegal.map"
+  },
+  {
+    "label": "Mauritania",
+    "id": "Q1025",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Mauritania.map"
+  },
+  {
+    "label": "Mozambique",
+    "id": "Q1029",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Mozambique.map"
+  },
+  {
+    "label": "Panama",
+    "id": "Q804",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Panama.map"
+  },
+  {
+    "label": "Central African Republic",
+    "id": "Q929",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Central+African+Republic.map"
+  },
+  {
+    "label": "Niger",
+    "id": "Q1032",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Niger.map"
+  },
+  {
+    "label": "Costa Rica",
+    "id": "Q800",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Costa+Rica.map"
+  },
+  {
+    "label": "Turkmenistan",
+    "id": "Q874",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Turkmenistan.map"
+  },
+  {
+    "label": "Rwanda",
+    "id": "Q1037",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Rwanda.map"
+  },
+  {
+    "label": "Burundi",
+    "id": "Q967",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Burundi.map"
+  },
+  {
+    "label": "Brunei",
+    "id": "Q921",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Brunei.map"
+  },
+  {
+    "label": "Togo",
+    "id": "Q945",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Togo.map"
+  },
+  {
+    "label": "Republic of the Congo",
+    "id": "Q971",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Republic+of+Congo.map"
+  },
+  {
+    "label": "The Gambia",
+    "id": "Q1005",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:The+Gambia.map"
+  },
+  {
+    "label": "Guinea",
+    "id": "Q1006",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Guinea.map"
+  },
+  {
+    "label": "Guinea-Bissau",
+    "id": "Q1007",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Guinea-Bissau.map"
+  },
+  {
+    "label": "Oman",
+    "id": "Q842",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Oman.map"
+  },
+  {
+    "label": "Malawi",
+    "id": "Q1020",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Malawi.map"
+  },
+  {
+    "label": "Honduras",
+    "id": "Q783",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Honduras.map"
+  },
+  {
+    "label": "Djibouti",
+    "id": "Q977",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Djibouti.map"
+  },
+  {
+    "label": "Gabon",
+    "id": "Q1000",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Gabon.map"
+  },
+  {
+    "label": "Liberia",
+    "id": "Q1014",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Liberia.map"
+  },
+  {
+    "label": "Timor-Leste",
+    "id": "Q574",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:East+Timor.map"
+  },
+  {
+    "label": "Haiti",
+    "id": "Q790",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Haiti.map"
+  },
+  {
+    "label": "Maldives",
+    "id": "Q826",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Maldives.map"
+  },
+  {
+    "label": "Qatar",
+    "id": "Q846",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Qatar.map"
+  },
+  {
+    "label": "Cape Verde",
+    "id": "Q1011",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Cape+Verde.map"
+  },
+  {
+    "label": "Sierra Leone",
+    "id": "Q1044",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Sierra+Leone.map"
+  },
+  {
+    "label": "Papua New Guinea",
+    "id": "Q691",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Papua+New+Guinea.map"
+  },
+  {
+    "label": "El Salvador",
+    "id": "Q792",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:El+Salvador.map"
+  },
+  {
+    "label": "Guyana",
+    "id": "Q734",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Guyana.map"
+  },
+  {
+    "label": "Suriname",
+    "id": "Q730",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Suriname.map"
+  },
+  {
+    "label": "Mauritius",
+    "id": "Q1027",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Mauritius.map"
+  },
+  {
+    "label": "Eswatini",
+    "id": "Q1050",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Eswatini.map"
+  },
+  {
+    "label": "Jamaica",
+    "id": "Q766",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Jamaica.map"
+  },
+  {
+    "label": "Guatemala",
+    "id": "Q774",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Guatemala.map"
+  },
+  {
+    "label": "Dominican Republic",
+    "id": "Q786",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Dominican+Republic.map"
+  },
+  {
+    "label": "South Sudan",
+    "id": "Q958",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:South+Sudan.map"
+  },
+  {
+    "label": "Comoros",
+    "id": "Q970",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Comoros.map"
+  },
+  {
+    "label": "Equatorial Guinea",
+    "id": "Q983",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Equatorial+Guinea.map"
+  },
+  {
+    "label": "Lesotho",
+    "id": "Q1013",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Lesotho.map"
+  },
+  {
+    "label": "The Bahamas",
+    "id": "Q778",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Bahamas.map"
+  },
+  {
+    "label": "Nicaragua",
+    "id": "Q811",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Nicaragua.map"
+  },
+  {
+    "label": "Fiji",
+    "id": "Q712",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Fiji.map"
+  },
+  {
+    "label": "Belize",
+    "id": "Q242",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Belize.map"
+  },
+  {
+    "label": "Seychelles",
+    "id": "Q1042",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Seychelles.map"
+  },
+  {
+    "label": "Barbados",
+    "id": "Q244",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Barbados.map"
+  },
+  {
+    "label": "S\u00e3o Tom\u00e9 and Pr\u00edncipe",
+    "id": "Q1039",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Sao+Tome+and+Principe.map"
+  },
+  {
+    "label": "Samoa",
+    "id": "Q683",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Samoa.map"
+  },
+  {
+    "label": "Vanuatu",
+    "id": "Q686",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Vanuatu.map"
+  },
+  {
+    "label": "Nauru",
+    "id": "Q697",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Nauru.map"
+  },
+  {
+    "label": "Antigua and Barbuda",
+    "id": "Q781",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Antigua+and+Barbuda.map"
+  },
+  {
+    "label": "Dominica",
+    "id": "Q784",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Dominica.map"
+  },
+  {
+    "label": "Tonga",
+    "id": "Q678",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Tonga.map"
+  },
+  {
+    "label": "Palau",
+    "id": "Q695",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Palau.map"
+  },
+  {
+    "label": "Grenada",
+    "id": "Q769",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Grenada.map"
+  },
+  {
+    "label": "Trinidad and Tobago",
+    "id": "Q754",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Trinidad+and+Tobago.map"
+  },
+  {
+    "label": "Tuvalu",
+    "id": "Q672",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Tuvalu.map"
+  },
+  {
+    "label": "Kiribati",
+    "id": "Q710",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Kiribati.map"
+  },
+  {
+    "label": "Solomon Islands",
+    "id": "Q685",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Solomon+Islands.map"
+  },
+  {
+    "label": "Marshall Islands",
+    "id": "Q709",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Marshall+Islands.map"
+  },
+  {
+    "label": "Saint Kitts and Nevis",
+    "id": "Q763",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Saint+Kitts+and+Nevis.map"
+  },
+  {
+    "label": "Saint Vincent and the Grenadines",
+    "id": "Q757",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Saint+Vincent.map"
+  },
+  {
+    "label": "Saint Lucia",
+    "id": "Q760",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Saint+Lucia.map"
+  },
+  {
+    "label": "Gibraltar",
+    "id": "Q1410",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Gibraltar.map"
+  },
+  {
+    "label": "Federated States of Micronesia",
+    "id": "Q702",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Federated+States+of+Micronesia.map"
+  },
+  {
+    "label": "Palestine",
+    "id": "Q219060",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Palestinian+territories.map"
+  },
+  {
+    "label": "Kingdom of the Netherlands",
+    "id": "Q29999",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Nederland.map"
+  },
+  {
+    "label": "Buenos Aires Province",
+    "id": "Q44754",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Argentina/Buenos+Aires.map"
+  },
+  {
+    "label": "Santa Fe Province",
+    "id": "Q44823",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Argentina/Santa+Fe.map"
+  }
+]

@@ -1,0 +1,252 @@
+[
+  {
+    "label": "California",
+    "id": "Q99",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:California.map"
+  },
+  {
+    "label": "Hawaii",
+    "id": "Q782",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Hawaii.map"
+  },
+  {
+    "label": "Alaska",
+    "id": "Q797",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Alaska.map"
+  },
+  {
+    "label": "Florida",
+    "id": "Q812",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Florida.map"
+  },
+  {
+    "label": "Texas",
+    "id": "Q1439",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Texas.map"
+  },
+  {
+    "label": "New York",
+    "id": "Q1384",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:NewYork.map"
+  },
+  {
+    "label": "Arizona",
+    "id": "Q816",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Arizona.map"
+  },
+  {
+    "label": "Alabama",
+    "id": "Q173",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Alabama.map"
+  },
+  {
+    "label": "Illinois",
+    "id": "Q1204",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Illinois.map"
+  },
+  {
+    "label": "Ohio",
+    "id": "Q1397",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Ohio.map"
+  },
+  {
+    "label": "Pennsylvania",
+    "id": "Q1400",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Pennsylvania.map"
+  },
+  {
+    "label": "Virginia",
+    "id": "Q1370",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Virginia.map"
+  },
+  {
+    "label": "Nevada",
+    "id": "Q1227",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Nevada.map"
+  },
+  {
+    "label": "Colorado",
+    "id": "Q1261",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Colorado.map"
+  },
+  {
+    "label": "New Jersey",
+    "id": "Q1408",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:NewJersey.map"
+  },
+  {
+    "label": "Massachusetts",
+    "id": "Q771",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Massachusetts.map"
+  },
+  {
+    "label": "Georgia",
+    "id": "Q1428",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Georgia-US.map"
+  },
+  {
+    "label": "Maryland",
+    "id": "Q1391",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Maryland.map"
+  },
+  {
+    "label": "Oregon",
+    "id": "Q824",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Oregon.map"
+  },
+  {
+    "label": "Utah",
+    "id": "Q829",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Utah.map"
+  },
+  {
+    "label": "Indiana",
+    "id": "Q1415",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Indiana.map"
+  },
+  {
+    "label": "Michigan",
+    "id": "Q1166",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Michigan.map"
+  },
+  {
+    "label": "Louisiana",
+    "id": "Q1588",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Louisiana.map"
+  },
+  {
+    "label": "Kansas",
+    "id": "Q1558",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Kansas.map"
+  },
+  {
+    "label": "Tennessee",
+    "id": "Q1509",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Tennessee.map"
+  },
+  {
+    "label": "Minnesota",
+    "id": "Q1527",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Minnesota.map"
+  },
+  {
+    "label": "Wisconsin",
+    "id": "Q1537",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Wisconsin.map"
+  },
+  {
+    "label": "Iowa",
+    "id": "Q1546",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Iowa.map"
+  },
+  {
+    "label": "Missouri",
+    "id": "Q1581",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Missouri.map"
+  },
+  {
+    "label": "Idaho",
+    "id": "Q1221",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Idaho.map"
+  },
+  {
+    "label": "Arkansas",
+    "id": "Q1612",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Arkansas.map"
+  },
+  {
+    "label": "Connecticut",
+    "id": "Q779",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Connecticut.map"
+  },
+  {
+    "label": "Washington",
+    "id": "Q1223",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Washington.map"
+  },
+  {
+    "label": "Mississippi",
+    "id": "Q1494",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Mississippi.map"
+  },
+  {
+    "label": "Kentucky",
+    "id": "Q1603",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Kentucky.map"
+  },
+  {
+    "label": "Delaware",
+    "id": "Q1393",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Delaware.map"
+  },
+  {
+    "label": "New Mexico",
+    "id": "Q1522",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:NewMexico.map"
+  },
+  {
+    "label": "Oklahoma",
+    "id": "Q1649",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Oklahoma.map"
+  },
+  {
+    "label": "Wyoming",
+    "id": "Q1214",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Wyoming.map"
+  },
+  {
+    "label": "Nebraska",
+    "id": "Q1553",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Nebraska.map"
+  },
+  {
+    "label": "Vermont",
+    "id": "Q16551",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Vermont.map"
+  },
+  {
+    "label": "Maine",
+    "id": "Q724",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Maine.map"
+  },
+  {
+    "label": "Montana",
+    "id": "Q1212",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:Montana.map"
+  },
+  {
+    "label": "North Carolina",
+    "id": "Q1454",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:NorthCarolina.map"
+  },
+  {
+    "label": "South Carolina",
+    "id": "Q1456",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:SouthCarolina.map"
+  },
+  {
+    "label": "New Hampshire",
+    "id": "Q759",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:NewHampshire.map"
+  },
+  {
+    "label": "West Virginia",
+    "id": "Q1371",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:WestVirginia.map"
+  },
+  {
+    "label": "Rhode Island",
+    "id": "Q1387",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:RhodeIsland.map"
+  },
+  {
+    "label": "South Dakota",
+    "id": "Q1211",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:SouthDakota.map"
+  },
+  {
+    "label": "North Dakota",
+    "id": "Q1207",
+    "geoShapeUrl": "http://commons.wikimedia.org/data/main/Data:NorthDakota.map"
+  }
+]

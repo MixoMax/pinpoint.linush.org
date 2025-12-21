@@ -1,0 +1,212 @@
+[
+  {
+    "label": "Yokosuka",
+    "id": "Q200578",
+    "lat": 35.249722222,
+    "lng": 139.660277777
+  },
+  {
+    "label": "Yokosuka",
+    "id": "Q200578",
+    "lat": 35.281305555,
+    "lng": 139.672083333
+  },
+  {
+    "label": "Area 51",
+    "id": "Q177397",
+    "lat": 37.233333333,
+    "lng": -115.808333333
+  },
+  {
+    "label": "Kure",
+    "id": "Q223439",
+    "lat": 34.249222222,
+    "lng": 132.565722222
+  },
+  {
+    "label": "Korean Demilitarized Zone",
+    "id": "Q331990",
+    "lat": 38.32,
+    "lng": 127.2
+  },
+  {
+    "label": "Angeles",
+    "id": "Q55741",
+    "lat": 15.147180555,
+    "lng": 120.584733333
+  },
+  {
+    "label": "St. Robert",
+    "id": "Q968335",
+    "lat": 37.8244,
+    "lng": -92.1336
+  },
+  {
+    "label": "Saladin Corridor",
+    "id": "Q765017",
+    "lat": 31.248101,
+    "lng": 34.25712
+  },
+  {
+    "label": "Capas",
+    "id": "Q56427",
+    "lat": 15.337222222,
+    "lng": 120.59
+  },
+  {
+    "label": "Vietnamese Demilitarized Zone",
+    "id": "Q2349960",
+    "lat": 16.9875,
+    "lng": 107.0359
+  },
+  {
+    "label": "Floridablanca",
+    "id": "Q55700",
+    "lat": 14.974,
+    "lng": 120.528
+  },
+  {
+    "label": "Porac",
+    "id": "Q55721",
+    "lat": 15.071944444,
+    "lng": 120.541944444
+  },
+  {
+    "label": "Bamban",
+    "id": "Q56420",
+    "lat": 15.274166666,
+    "lng": 120.566944444
+  },
+  {
+    "label": "RAAF Woomera Range Complex",
+    "id": "Q16927441",
+    "lat": -30.9553,
+    "lng": 136.5322
+  },
+  {
+    "label": "Salto di Quirra",
+    "id": "Q428283",
+    "lat": 39.527222222,
+    "lng": 9.632777777
+  },
+  {
+    "label": "North Korea\u2013South Korea border",
+    "id": "Q3088884",
+    "lat": 38.204722222,
+    "lng": 123.5475
+  },
+  {
+    "label": "Serpukhov-15",
+    "id": "Q4417798",
+    "lat": 55.07,
+    "lng": 37.04
+  },
+  {
+    "label": "Lop Nor / Malan nuclear test site",
+    "id": "Q1726774",
+    "lat": 41.54481944,
+    "lng": 88.712
+  },
+  {
+    "label": "Serpuhov-13",
+    "id": "Q4417794",
+    "lat": 54.932222222,
+    "lng": 37.558888888
+  },
+  {
+    "label": "Barnim-Kaserne",
+    "id": "Q808493",
+    "lat": 52.5271,
+    "lng": 13.8314
+  },
+  {
+    "label": "Von-Hardenberg-Kaserne",
+    "id": "Q1248459",
+    "lat": 52.5913,
+    "lng": 13.9196
+  },
+  {
+    "label": "Q4146319",
+    "id": "Q4146319",
+    "lat": 43.99444444,
+    "lng": 145.7991667
+  },
+  {
+    "label": "Chekhov-7",
+    "id": "Q4515208",
+    "lat": 55.244166666,
+    "lng": 37.281111111
+  },
+  {
+    "label": "Chekhov-2",
+    "id": "Q23838133",
+    "lat": 55.183333333,
+    "lng": 37.605555555
+  },
+  {
+    "label": "Chekhov-3",
+    "id": "Q111708852",
+    "lat": 55.152222222,
+    "lng": 37.275
+  },
+  {
+    "label": "Chekhov-4",
+    "id": "Q111708871",
+    "lat": 55.161388888,
+    "lng": 37.422777777
+  },
+  {
+    "label": "Chekhov-8",
+    "id": "Q111708891",
+    "lat": 55.172777777,
+    "lng": 37.237777777
+  },
+  {
+    "label": "Nerastannoe",
+    "id": "Q113448967",
+    "lat": 55.071666666,
+    "lng": 37.669444444
+  },
+  {
+    "label": "Chekhov-1",
+    "id": "Q113459814",
+    "lat": 55.147777777,
+    "lng": 37.508611111
+  },
+  {
+    "label": "Solnechnogorsk-30",
+    "id": "Q7831077",
+    "lat": 56.1239,
+    "lng": 36.8667
+  },
+  {
+    "label": "Israel-Syria Demilitarized Zones",
+    "id": "Q21586797",
+    "lat": 33.0,
+    "lng": 35.61667
+  },
+  {
+    "label": "Kampfmittelbeseitigungsdienst Baden-W\u00fcrttemberg",
+    "id": "Q90042564",
+    "lat": 48.71048,
+    "lng": 9.07642
+  },
+  {
+    "label": "Military town No. 11",
+    "id": "Q94654585",
+    "lat": 50.211527777,
+    "lng": 30.313222222
+  },
+  {
+    "label": "Poblado de Marina",
+    "id": "Q134541670",
+    "lat": 37.609143667,
+    "lng": -1.019996449
+  },
+  {
+    "label": "Beijing Military City",
+    "id": "Q136146581",
+    "lat": 39.81821,
+    "lng": 116.06753
+  }
+]

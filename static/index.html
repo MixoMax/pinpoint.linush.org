@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinpoint Earth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div id="custom-cursor"></div>
+    <div id="map"></div>
+
+    <div id="ui-layer">
+        <button id="back-btn" class="pointer-events-auto hidden" onclick="backToMenu()">&larr; Menu</button>
+        <div id="hud" class="pointer-events-auto">
+            <div id="prompt">Loading...</div>
+            <div id="sub-prompt"></div>
+        </div>
+        <div id="stats-bar" class="hidden">Score: 0 | Round: 1/5</div>
+        
+        <div id="result-overlay" class="pointer-events-auto">
+            <span id="result-title">Good job!</span>
+            <span id="result-details">Distance: 50km</span>
+            <button id="next-btn" onclick="nextRound()">Next Round</button>
+        </div>
+    </div>
+
+    <div id="menu" class="pointer-events-auto">
+        <h1>Pinpoint Earth</h1>
+        <p>Test your geography skills</p>
+        <div id="menu-buttons">Loading datasets...</div>
+        
+        <div class="infinite-mode-container">
+            <label class="infinite-mode-label">
+                <input type="checkbox" id="infinite-mode">
+                Infinite Mode
+            </label>
+        </div>
+
+        <div class="create-challenge-container">
+            <a href="create.html" class="create-challenge-link">+ Create New Challenge</a>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+    <script>
+        // --- Custom Cursor ---
+        const cursor = document.getElementById('custom-cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.addEventListener('mousedown', () => cursor.classList.add('active'));
+        document.addEventListener('mouseup', () => cursor.classList.remove('active'));
+
+        const addHoverState = () => cursor.classList.add('hover');
+        const removeHoverState = () => cursor.classList.remove('hover');
+
+        document.querySelectorAll('a, button, .search-item, input, select').forEach(el => {
+            el.addEventListener('mouseenter', addHoverState);
+            el.addEventListener('mouseleave', removeHoverState);
+        });
+
+        // Observer for dynamic elements
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.nodeType === 1) {
+                        if (node.matches('a, button, .search-item, input, select')) {
+                            node.addEventListener('mouseenter', addHoverState);
+                            node.addEventListener('mouseleave', removeHoverState);
+                        }
+                        node.querySelectorAll('a, button, .search-item, input, select').forEach(el => {
+                            el.addEventListener('mouseenter', addHoverState);
+                            el.addEventListener('mouseleave', removeHoverState);
+                        });
+                    }
+                });
+            });
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+
+        // --- Game State ---
+        let map;
+        let gameConfig = null;
+        let gameData = [];
+        let fullData = [];
+        let currentRound = 0;
+        let score = 0;
+        let totalRounds = 5;
+        let currentTarget = null;
+        let isRoundActive = false;
+        let isInfinite = false;
+        let datasetSpread = 10000; // Default global spread
+        let resultLayer = L.layerGroup();
+        let targetLayer = L.layerGroup(); // For hidden polygons
+
+        // --- Initialization ---
+        window.onload = loadDatasets;
+
+        async function loadDatasets() {
+            try {
+                const response = await fetch('/datasets');
+                const datasets = await response.json();
+                const menuContainer = document.getElementById('menu-buttons');
+                menuContainer.innerHTML = '';
+                
+                datasets.forEach(ds => {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'menu-option-wrapper';
+
+                    const btn = document.createElement('button');
+                    btn.innerText = ds.name;
+                    btn.onclick = () => initGame(ds);
+                    btn.className = 'menu-option-btn';
+                    
+                    const editBtn = document.createElement('a');
+                    editBtn.href = `create.html?id=${ds.id}`;
+                    editBtn.innerText = "⚙";
+                    editBtn.className = 'menu-edit-btn';
+                    editBtn.title = "Edit Dataset";
+
+                    wrapper.appendChild(btn);
+                    wrapper.appendChild(editBtn);
+                    menuContainer.appendChild(wrapper);
+                });
+            } catch (e) {
+                document.getElementById('menu-buttons').innerText = "Error loading datasets.";
+                console.error(e);
+            }
+        }
+
+        function initMap() {
+            // Initialize map centered on the world
+            map = L.map('map', {
+                center: [20, 0],
+                zoom: 2,
+                zoomControl: false,
+                attributionControl: false
+            });
+
+            // Add tile layer
+            L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", {
+                attribution: 'Tiles &copy; Esri',
+                maxZoom: 17
+            }).addTo(map);
+
+            resultLayer.addTo(map);
+            targetLayer.addTo(map);
+
+            map.on('click', handleMapClick);
+        }
+
+        async function initGame(config) {
+            gameConfig = config;
+            isInfinite = document.getElementById('infinite-mode').checked;
+            
+            document.getElementById('menu').classList.add('hidden');
+            document.getElementById('hud').style.display = 'block';
+            document.getElementById('stats-bar').classList.remove('hidden');
+            document.getElementById('back-btn').classList.remove('hidden');
+            
+            if (!map) initMap();
+
+            // Load Data
+            try {
+                const response = await fetch(config.filename);
+                const data = await response.json();
+                fullData = data;
+                
+                // Calculate Spread for Relative Scoring
+                if (data.length > 0) {
+                    let minLat = 90, maxLat = -90, minLng = 180, maxLng = -180;
+                    let hasCoords = false;
+                    data.forEach(p => {
+                        if (p.lat && p.lng) {
+                            const lat = parseFloat(p.lat);
+                            const lng = parseFloat(p.lng);
+                            if (lat < minLat) minLat = lat;
+                            if (lat > maxLat) maxLat = lat;
+                            if (lng < minLng) minLng = lng;
+                            if (lng > maxLng) maxLng = lng;
+                            hasCoords = true;
+                        }
+                    });
+                    
+                    if (hasCoords) {
+                        const from = turf.point([minLng, minLat]);
+                        const to = turf.point([maxLng, maxLat]);
+                        datasetSpread = turf.distance(from, to, {units: 'kilometers'});
+                        // Ensure minimum spread to avoid 0-distance issues on single points
+                        datasetSpread = Math.max(datasetSpread, 200);
+                    } else {
+                        datasetSpread = 10000;
+                    }
+                }
+
+                if (isInfinite) {
+                    gameData = []; // Not used sequentially in infinite
+                } else {
+                    // Shuffle data
+                    let choosen_indices = [];
+                    // Handle small datasets
+                    const count = Math.min(totalRounds, data.length);
+                    while (choosen_indices.length < count) {
+                        let idx = Math.floor(Math.random() * data.length);
+                        if (!choosen_indices.includes(idx)) {
+                            choosen_indices.push(idx);
+                        }
+                    }
+                    gameData = choosen_indices.map(i => data[i]);
+                }
+                
+                currentRound = 0;
+                score = 0;
+                updateStats();
+                startRound();
+            } catch (e) {
+                alert("Error loading game data: " + e);
+                console.error(e);
+                backToMenu();
+            }
+        }
+
+        // --- Game Logic ---
+        async function startRound() {
+            if (!isInfinite && currentRound >= totalRounds) {
+                endGame();
+                return;
+            }
+
+            isRoundActive = true;
+            if (isInfinite) {
+                currentTarget = fullData[Math.floor(Math.random() * fullData.length)];
+            } else {
+                currentTarget = gameData[currentRound];
+            }
+            
+            resultLayer.clearLayers();
+            targetLayer.clearLayers();
+            document.getElementById('result-overlay').style.display = 'none';
+
+            // Update UI
+            const promptEl = document.getElementById('prompt');
+            const subPromptEl = document.getElementById('sub-prompt');
+
+            // Format prompts
+            let promptText = gameConfig.prompt_template;
+            let subPromptText = gameConfig.sub_prompt_template;
+            
+            // Replace placeholders
+            for (const [key, val] of Object.entries(currentTarget)) {
+                promptText = promptText.replace(`{${key}}`, val);
+                subPromptText = subPromptText.replace(`{${key}}`, val);
+            }
+
+            promptEl.innerText = promptText;
+            subPromptEl.innerText = subPromptText;
+
+            if (gameConfig.type === 'polygon') {
+                // Pre-fetch polygon data for validation
+                try {
+                    const urlKey = gameConfig.data_keys.geoShapeUrl || 'geoShapeUrl';
+                    let url = currentTarget[urlKey].replace('http://', 'https://');
+                    const res = await fetch(`/proxy_map?url=${encodeURIComponent(url)}`);
+                    if (!res.ok) throw new Error("Failed to fetch map");
+                    const geojson = await res.json();
+                    currentTarget.geojson = geojson;
+                } catch (e) {
+                    console.error("Failed to load polygon", e);
+                    // Skip this round if data fails
+                    currentRound++;
+                    startRound();
+                    return;
+                }
+            }
+        }
+
+        function handleMapClick(e) {
+            if (!isRoundActive) return;
+            isRoundActive = false;
+
+            const lat = e.latlng.lat;
+            const lng = e.latlng.lng;
+            let roundScore = 0;
+            let message = "";
+            let details = "";
+
+            if (gameConfig.type === 'point') {
+                const latKey = gameConfig.data_keys.lat || 'lat';
+                const lngKey = gameConfig.data_keys.lng || 'lng';
+                const labelKey = gameConfig.data_keys.label || 'label';
+
+                const targetLat = parseFloat(currentTarget[latKey]);
+                const targetLng = parseFloat(currentTarget[lngKey]);
+                
+                // Calculate Distance (Haversine)
+                const from = turf.point([lng, lat]);
+                const to = turf.point([targetLng, targetLat]);
+                const distanceKm = turf.distance(from, to, {units: 'kilometers'});
+                
+                // Scoring: 5000pts max. Relative to dataset spread.
+                // Zero points if distance > datasetSpread.
+                const maxScoreDist = datasetSpread;
+                roundScore = Math.max(0, Math.round(5000 * (1 - (distanceKm / maxScoreDist))));
+                
+                // Bonus for very close
+                if (distanceKm < Math.max(50, maxScoreDist * 0.05)) roundScore = 5000;
+
+                message = roundScore > 4000 ? "Excellent!" : roundScore > 2000 ? "Not bad!" : "Miles off!";
+                details = `${Math.round(distanceKm).toLocaleString()} km away`;
+
+                // Visuals
+                L.marker([targetLat, targetLng]).addTo(resultLayer).bindPopup(currentTarget[labelKey]).openPopup();
+                L.polyline([[lat, lng], [targetLat, targetLng]], {color: 'red', dashArray: '5, 10'}).addTo(resultLayer);
+                L.circleMarker([lat, lng], {color: 'white', radius: 5}).addTo(resultLayer);
+
+            } else {
+                // Polygon Mode
+                const pt = turf.point([lng, lat]);
+                // currentTarget.geojson is the GeoJSON object
+                // It might be a GeometryCollection or FeatureCollection.
+                // Turf expects a Feature or Geometry.
+                
+                let isInside = false;
+                try {
+                    // Handle Wikimedia Data: format
+                    const data = currentTarget.geojson.data || currentTarget.geojson;
+                    
+                    if (data.type === 'FeatureCollection') {
+                        for (const feature of data.features) {
+                            if (turf.booleanPointInPolygon(pt, feature)) {
+                                isInside = true;
+                                break;
+                            }
+                        }
+                    } else if (data.type === 'GeometryCollection') {
+                         for (const geom of data.geometries) {
+                            // booleanPointInPolygon expects a polygon/multipolygon geometry or feature
+                            // Wrap geometry in feature
+                            if (turf.booleanPointInPolygon(pt, {type: 'Feature', geometry: geom})) {
+                                isInside = true;
+                                break;
+                            }
+                        }
+                    } else {
+                        // Single geometry or feature
+                        isInside = turf.booleanPointInPolygon(pt, data);
+                    }
+                } catch (err) {
+                    console.error("Turf check failed", err);
+                }
+
+                if (isInside) {
+                    roundScore = 5000;
+                    message = "Correct!";
+                    details = "You found it!";
+                } else {
+                    roundScore = 0;
+                    message = "Missed!";
+                    details = "That's not it.";
+                }
+
+                // Show the polygon
+                L.geoJSON(currentTarget.geojson.data || currentTarget.geojson, {
+                    style: { color: isInside ? '#2ecc71' : '#e74c3c', weight: 2, fillOpacity: 0.4 }
+                }).addTo(resultLayer);
+            }
+
+            score += roundScore;
+            updateStats();
+            showResult(message, details);
+        }
+
+        function showResult(title, details) {
+            document.getElementById('result-title').innerText = title;
+            document.getElementById('result-details').innerText = details;
+            document.getElementById('result-overlay').style.display = 'block';
+            
+            // Change button text if last round
+            const btn = document.getElementById('next-btn');
+            if (!isInfinite && currentRound >= totalRounds - 1) {
+                btn.innerText = "Finish Game";
+                btn.onclick = endGame;
+            } else {
+                btn.innerText = "Next Round";
+                btn.onclick = nextRound;
+            }
+        }
+
+        function nextRound() {
+            currentRound++;
+            updateStats();
+            startRound();
+        }
+
+        function updateStats() {
+            if (isInfinite) {
+                document.getElementById('stats-bar').innerText = `Score: ${score} | Round: ${currentRound + 1}`;
+            } else {
+                document.getElementById('stats-bar').innerText = `Score: ${score} | Round: ${currentRound + 1}/${totalRounds}`;
+            }
+        }
+
+        function endGame() {
+            alert(`Game Over! Final Score: ${score}`);
+            location.reload();
+        }
+
+        function backToMenu() {
+            document.getElementById('ui-layer').style.display = 'block'; // Ensure UI layer is visible
+            document.getElementById('hud').style.display = 'none';
+            document.getElementById('stats-bar').classList.add('hidden');
+            document.getElementById('result-overlay').style.display = 'none';
+            document.getElementById('back-btn').classList.add('hidden');
+            document.getElementById('menu').classList.remove('hidden');
+            
+            // Reset state
+            isRoundActive = false;
+            resultLayer.clearLayers();
+            targetLayer.clearLayers();
+            if (map) {
+                map.setView([20, 0], 2);
+            }
+        }
+
+        // Spacebar shortcut
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                const overlay = document.getElementById('result-overlay');
+                if (overlay.style.display !== 'none') {
+                    if (!isInfinite && currentRound >= totalRounds - 1) {
+                        endGame();
+                    } else {
+                        nextRound();
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
