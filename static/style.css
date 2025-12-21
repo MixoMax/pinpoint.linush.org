@@ -542,7 +542,7 @@ input[type="checkbox"]:checked::after {
     margin-top: 15px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     h1 {
         font-size: 2rem;
     }
