@@ -99,6 +99,7 @@
         let isRoundActive = false;
         let isInfinite = false;
         let datasetSpread = 10000; // Default global spread
+        let scoringScale = 2000; // <--- ADD THIS
         let resultLayer = L.layerGroup();
         let targetLayer = L.layerGroup(); // For hidden polygons
 
@@ -196,10 +197,22 @@
                         const from = turf.point([minLng, minLat]);
                         const to = turf.point([maxLng, maxLat]);
                         datasetSpread = turf.distance(from, to, {units: 'kilometers'});
-                        // Ensure minimum spread to avoid 0-distance issues on single points
-                        datasetSpread = Math.max(datasetSpread, 200);
+                        // Ensure minimum spread
+                        datasetSpread = Math.max(datasetSpread, 100);
+                        scoringScale = datasetSpread / 4;
+
+                        // 1) ZOOM TO DATASET BOUNDS
+                        // Add some padding so points aren't on the very edge
+                        map.fitBounds([[minLat, minLng], [maxLat, maxLng]], {
+                            padding: [50, 50],
+                            maxZoom: 15,
+                            animate: true,
+                            duration: 1.5
+                        });
                     } else {
                         datasetSpread = 10000;
+                        scoringScale = 2000;
+                        map.setView([20, 0], 2);
                     }
                 }
 
@@ -307,15 +320,29 @@
                 const to = turf.point([targetLng, targetLat]);
                 const distanceKm = turf.distance(from, to, {units: 'kilometers'});
                 
-                // Scoring: 5000pts max. Relative to dataset spread.
-                // Zero points if distance > datasetSpread.
-                const maxScoreDist = datasetSpread;
-                roundScore = Math.max(0, Math.round(5000 * (1 - (distanceKm / maxScoreDist))));
-                
-                // Bonus for very close
-                if (distanceKm < Math.max(50, maxScoreDist * 0.05)) roundScore = 5000;
+                // --- SCORING UPDATE START ---
+                // Exponential scoring based on the map's specific scale
+                // Formula: 5000 * e^(-distance / scale)
+                roundScore = Math.round(5000 * Math.exp(-distanceKm / scoringScale));
 
-                message = roundScore > 4000 ? "Excellent!" : roundScore > 2000 ? "Not bad!" : "Miles off!";
+                // Hard clamp to ensure tiny inaccuracies don't lose points,
+                // but huge errors don't give pity points if they are truly far.
+                if (distanceKm < Math.max(10, datasetSpread * 0.01)) roundScore = 5000;
+                if (roundScore < 50) roundScore = 0;
+                // --- SCORING UPDATE END ---
+
+                // 3) DYNAMIC RESULT TITLES
+                const perfectMsgs = ["Bullseye!", "Pinpoint Accuracy!", "Excellent!", "Geography Genius!"];
+                const goodMsgs = ["Not bad!", "Close enough!", "Respectable.", "Solid Effort."];
+                const badMsgs = ["Miles off!", "Where?", "Lost in space?", "Ouch."];
+
+                if (roundScore > 4000) {
+                    message = perfectMsgs[Math.floor(Math.random() * perfectMsgs.length)];
+                } else if (roundScore > 2000) {
+                    message = goodMsgs[Math.floor(Math.random() * goodMsgs.length)];
+                } else {
+                    message = badMsgs[Math.floor(Math.random() * badMsgs.length)];
+                }
                 details = `${Math.round(distanceKm).toLocaleString()} km away`;
 
                 // Visuals
@@ -410,9 +437,35 @@
             }
         }
 
+        // 2) NICE END GAME POPUP WITH ANIMATION
         function endGame() {
-            alert(`Game Over! Final Score: ${score}`);
-            location.reload();
+            const overlay = document.getElementById('result-overlay');
+            const title = document.getElementById('result-title');
+            const details = document.getElementById('result-details');
+            const btn = document.getElementById('next-btn');
+
+            // Set content
+            title.innerText = "Challenge Complete!";
+            details.innerText = `Final Score: ${score} / ${totalRounds * 5000}`;
+            
+            // Configure "Play Again" button
+            btn.innerText = "Back to Menu";
+            btn.onclick = () => location.reload();
+
+            // Show and Animate
+            overlay.style.display = 'block';
+            
+            // Simple JS Animation (Pop effect)
+            overlay.animate([
+                { transform: 'translateX(-50%) scale(0.5)', opacity: 0 },
+                { transform: 'translateX(-50%) scale(1.1)', opacity: 1, offset: 0.7 },
+                { transform: 'translateX(-50%) scale(1)', opacity: 1 }
+            ], {
+                duration: 500,
+                easing: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+            });
+
+            // Optional: Confetti effect logic could go here
         }
 
         function backToMenu() {
